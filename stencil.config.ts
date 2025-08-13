@@ -1,7 +1,7 @@
 import { Config } from '@stencil/core';
 
 export const config: Config = {
-  namespace: 'ui-components',
+  namespace: 'cleanuui-components',
   outputTargets: [
     {
       type: 'dist',
@@ -9,18 +9,16 @@ export const config: Config = {
     },
     {
       type: 'dist-custom-elements',
-      customElementsExportBehavior: 'auto-define-custom-elements',
+      customElementsExportBehavior: 'bundle',
       externalRuntime: false,
     },
     {
       type: 'docs-readme',
     },
     {
-      type: 'www',
-      serviceWorker: null, // disable service workers
+      type: 'www', // Needed for GitHub Pages
+      serviceWorker: null, // Disable service worker if not needed
+      baseUrl: 'https://cleanuihub.github.io/stenciljs-ui-components/', // Your repo pages URL
     },
   ],
-  testing: {
-    browserHeadless: "shell",
-  },
 };

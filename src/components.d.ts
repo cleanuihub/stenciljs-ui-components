@@ -6,56 +6,77 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+    interface SearchBar {
+    }
+    interface SearchButton {
     }
 }
+export interface SearchBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSearchBarElement;
+}
+export interface SearchButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSearchButtonElement;
+}
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLSearchBarElementEventMap {
+        "textChange": string;
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    interface HTMLSearchBarElement extends Components.SearchBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLSearchBarElementEventMap>(type: K, listener: (this: HTMLSearchBarElement, ev: SearchBarCustomEvent<HTMLSearchBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLSearchBarElementEventMap>(type: K, listener: (this: HTMLSearchBarElement, ev: SearchBarCustomEvent<HTMLSearchBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLSearchBarElement: {
+        prototype: HTMLSearchBarElement;
+        new (): HTMLSearchBarElement;
+    };
+    interface HTMLSearchButtonElementEventMap {
+        "buttonClick": void;
+    }
+    interface HTMLSearchButtonElement extends Components.SearchButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLSearchButtonElementEventMap>(type: K, listener: (this: HTMLSearchButtonElement, ev: SearchButtonCustomEvent<HTMLSearchButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLSearchButtonElementEventMap>(type: K, listener: (this: HTMLSearchButtonElement, ev: SearchButtonCustomEvent<HTMLSearchButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLSearchButtonElement: {
+        prototype: HTMLSearchButtonElement;
+        new (): HTMLSearchButtonElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "search-bar": HTMLSearchBarElement;
+        "search-button": HTMLSearchButtonElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+    interface SearchBar {
+        "onTextChange"?: (event: SearchBarCustomEvent<string>) => void;
+    }
+    interface SearchButton {
+        "onButtonClick"?: (event: SearchButtonCustomEvent<void>) => void;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "search-bar": SearchBar;
+        "search-button": SearchButton;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "search-bar": LocalJSX.SearchBar & JSXBase.HTMLAttributes<HTMLSearchBarElement>;
+            "search-button": LocalJSX.SearchButton & JSXBase.HTMLAttributes<HTMLSearchButtonElement>;
         }
     }
 }
