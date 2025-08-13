@@ -1,26 +1,41 @@
+# Build outputs (don’t commit)
 dist/
 www/
 loader/
 
+# Node & tooling
+node_modules/
+.npmrc
+.eslintcache
+
+# Keep lockfile committed
+# (remove the next line if you truly want to ignore all locks)
+# *.lock
+!package-lock.json
+
+# Logs & temps
 *~
 *.sw[mnpcod]
 *.log
-*.lock
 *.tmp
 *.tmp.*
 log.txt
-*.sublime-project
-*.sublime-workspace
 
+# Stencil & IDE
 .stencil/
 .idea/
 .vscode/
 .sass-cache/
 .versions/
-node_modules/
-$RECYCLE.BIN/
 
+# OS cruft
 .DS_Store
 Thumbs.db
-UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
+
+# Env
 .env
+
+# Optional extras you might want
+coverage/
+.nyc_output/
